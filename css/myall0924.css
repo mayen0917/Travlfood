@@ -1,0 +1,111 @@
+ @import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
+
+ :root {
+   --corle01: #6ac8e4;
+   --corle02: #a4bdeb;
+
+
+
+ }
+
+
+ body {
+   font-family: "Klee One", cursive;
+ }
+
+ /* 字體粗細 */
+ .fw-100 {
+   font-weight: 100;
+ }
+
+ .fw-200 {
+   font-weight: 200;
+ }
+
+ .fw-300 {
+   font-weight: 300;
+ }
+
+ .fw-400 {
+   font-weight: 400;
+ }
+
+ .fw-500 {
+   font-weight: 500;
+ }
+
+ .fw-600 {
+   font-weight: 600;
+ }
+
+ .fw-700 {
+   font-weight: 700;
+ }
+
+ .fw-800 {
+   font-weight: 800;
+ }
+
+ /* 標題 */
+ .mytitle-01 {
+   font-size: 32px;
+   font-weight: 300;
+   text-align: center;
+   color: rgb(184, 132, 233);
+ }
+
+ .mytitle-02 {
+   font-size: 32px;
+   font-weight: 600;
+   text-align: center;
+   color: rgb(132, 210, 233);
+ }
+
+ .mytitle-03 {
+   font-size: 32px;
+   font-weight: 800;
+   text-align: center;
+   color: rgb(132, 233, 183);
+ }
+
+ .mytitle-01 {
+   font-size: 32px;
+   font-weight: 300;
+   text-align: center;
+   color: rgb(184, 163, 132);
+   /* 柔和暖棕色 */
+   margin-top: 15px;
+ }
+
+ .mytitle-02 {
+   font-size: 32px;
+   font-weight: 600;
+   text-align: center;
+   color: rgb(132, 180, 150);
+   /* 柔和黃綠色 */
+   margin-top: 10px;
+ }
+
+ .mytitle-03 {
+   font-size: 32px;
+   font-weight: 800;
+   text-align: center;
+   color: rgb(96, 128, 96);
+   /* 柔和沉穩橄欖綠 */
+   margin-top: 10px;
+   margin-bottom: 15px;
+ }
+  .mytitle-04 {
+   font-size: 48px;
+   font-weight: 900;
+   text-align: center;
+   color: rgb(96, 128, 96);
+   /* 柔和沉穩橄欖綠 */
+   margin-top: 10px;
+   margin-bottom: 15px;
+
+ /* 背景圖 */
+ .bg-img {
+   background-position: center center;
+   background-size: cover;
+ }
