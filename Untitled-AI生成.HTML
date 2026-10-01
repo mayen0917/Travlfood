@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>森活管家 - 溫馨商務儀表板</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        oatmeal: '#FBF9F5',
+                        cream: '#F4EFEA',
+                        sage: {
+                            50: '#F2F6F3',
+                            100: '#DDE7E1',
+                            200: '#BDCE6D',
+                            500: '#7E9B89',
+                            600: '#647D6E',
+                            700: '#4F6357',
+                        },
+                        terracotta: {
+                            DEFAULT: '#D48C73',
+                            light: '#E8B4A2'
+                        },
+                        warmdark: '#2C3530'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F4EFEA;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #DDE7E1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7E9B89;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-[#EAE5DF] min-h-screen flex items-center justify-center p-0 sm:p-4 font-sans text-warmdark">
+
+    <div class="w-full max-w-[600px] bg-oatmeal min-h-screen sm:min-h-[880px] sm:rounded-[3rem] shadow-2xl flex flex-col relative overflow-hidden border border-cream">
+        
+        <!-- Top Header Bar -->
+        <header class="pt-8 px-6 pb-4 bg-oatmeal flex items-center justify-between z-10">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-sage-100 flex items-center justify-center text-sage-700 font-bold text-lg shadow-sm">
+                    🌱
+                </div>
+                <div>
+                    <div class="text-xs text-sage-600 font-medium tracking-wide">早安，創辦人 ☀️</div>
+                    <h1 class="text-xl font-bold text-warmdark">森活工作室</h1>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="showToast('目前沒有未讀通知喔！✨')" class="w-10 h-10 rounded-full bg-cream hover:bg-sage-100 transition flex items-center justify-center text-sage-700 relative">
+                    🔔
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-terracotta rounded-full"></span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Scrollable Content Area -->
+        <main class="flex-1 overflow-y-auto px-6 pb-24 space-y-6">
+            
+            <section class="bg-gradient-to-br from-sage-50 to-sage-100/50 rounded-3xl p-5 border border-sage-100 shadow-sm relative overflow-hidden">
+                <div class="absolute right-[-10px] bottom-[-10px] text-7xl opacity-15 select-none pointer-events-none">🌿</div>
+                <div class="relative z-10">
+                    <span class="inline-block px-3 py-1 bg-sage-200/50 text-sage-700 text-xs font-semibold rounded-full mb-2">營運狀態良好</span>
+                    <h2 class="text-lg font-bold text-warmdark mb-1">本月目標已達成 88%！</h2>
+                    <p class="text-xs text-sage-700 leading-relaxed">
+                        「慢慢來，比較快。今天的每一步都是穩健的灌溉。」 ☕
+                    </p>
+                    <div class="mt-4 w-full bg-white/60 rounded-full h-2.5 overflow-hidden">
+                        <div class="bg-sage-500 h-2.5 rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="text-sm font-bold text-warmdark uppercase tracking-wider">核心業務數據</h3>
+                    <button onclick="showToast('數據每 5 分鐘自動同步一次')" class="text-xs text-sage-600 hover:text-sage-700 font-medium">即時同步 ↺</button>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-cream hover:border-sage-200 transition">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center justify-between">
+                            <span>本月總營收</span>
+                            <span class="text-sage-500 text-xs font-semibold">📈 +12%</span>
+                        </div>
+                        <div class="text-xl font-bold text-warmdark">NT$ 284,500</div>
+                        <div class="text-[10px] text-gray-400 mt-1">相較上月同期成長</div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl shadow-sm border border-cream hover:border-sage-200 transition">
+                        <div class="text-xs text-gray-400 mb-1 flex items-center justify-between">
+                            <span>活躍客戶數</span>
+                            <span class="text-sage-500 text-xs font-semibold">👥 穩健</span>
+                        </div>
+                        <div class="text-xl font-bold text-warmdark">1,420 位</div>
+                        <div class="text-[10px] text-gray-400 mt-1">本週新進 34 位</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white rounded-3xl p-5 shadow-sm border border-cream">
+                <div class="flex bg-oatmeal p-1 rounded-2xl mb-4">
+                    <button onclick="switchTab('tasks')" id="tab-btn-tasks" class="flex-1 py-2 text-xs font-bold rounded-xl transition bg-white text-sage-700 shadow-sm">今日待辦</button>
+                    <button onclick="switchTab('finances')" id="tab-btn-finances" class="flex-1 py-2 text-xs font-bold rounded-xl transition text-gray-500 hover:text-warmdark">收支明細</button>
+                    <button onclick="switchTab('team')" id="tab-btn-team" class="flex-1 py-2 text-xs font-bold rounded-xl transition text-gray-500 hover:text-warmdark">團隊動態</button>
+                </div>
+
+                <!-- Tab 1: Tasks -->
+                <div id="tab-tasks" class="space-y-3 animate-fade-in">
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal/60 border border-cream">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" checked class="w-4 h-4 rounded text-sage-500 focus:ring-sage-400 cursor-pointer accent-[#7E9B89]">
+                            <span class="text-xs font-medium text-gray-400 line-through">審閱 Q3 綠色永續專案企劃書</span>
+                        </div>
+                        <span class="text-[10px] bg-sage-100 text-sage-700 px-2 py-0.5 rounded-full">已完成</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal border border-cream">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 rounded text-sage-500 focus:ring-sage-400 cursor-pointer accent-[#7E9B89]">
+                            <span class="text-xs font-medium text-warmdark">與永續農業品牌進行合作洽談</span>
+                        </div>
+                        <span class="text-[10px] bg-terracotta-light/30 text-terracotta px-2 py-0.5 rounded-full font-semibold">下午 3:00</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal border border-cream">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 rounded text-sage-500 focus:ring-sage-400 cursor-pointer accent-[#7E9B89]">
+                            <span class="text-xs font-medium text-warmdark">核對本週自由工作者薪資清單</span>
+                        </div>
+                        <span class="text-[10px] bg-cream text-gray-600 px-2 py-0.5 rounded-full">今日稍後</span>
+                    </div>
+                    <button onclick="showToast('開啟新增待辦事項對話框 ✨')" class="w-full py-2.5 border-2 border-dashed border-sage-200 text-sage-600 text-xs font-semibold rounded-xl hover:bg-sage-50 transition flex items-center justify-center gap-1">
+                        + 新增一筆溫馨記事
+                    </button>
+                </div>
+
+                <!-- Tab 2: Finances -->
+                <div id="tab-finances" class="space-y-3 hidden animate-fade-in">
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal border border-cream">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-sage-100 text-sage-700 flex items-center justify-center text-xs">📥</div>
+                            <div>
+                                <div class="text-xs font-bold text-warmdark">訂閱服務收入 (月費)</div>
+                                <div class="text-[10px] text-gray-400">今天, 10:24</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-sage-600">+ NT$ 12,800</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal border border-cream">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-terracotta-light/20 text-terracotta flex items-center justify-center text-xs">📤</div>
+                            <div>
+                                <div class="text-xs font-bold text-warmdark">雲端伺服器租賃費用</div>
+                                <div class="text-[10px] text-gray-400">昨天, 14:00</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-bold text-terracotta">- NT$ 3,450</span>
+                    </div>
+                    <button onclick="showToast('正在下載完整財務報表 PDF... 📄')" class="w-full py-2.5 bg-sage-500 text-white text-xs font-semibold rounded-xl hover:bg-sage-600 transition shadow-sm">
+                        匯出本月完整會計報表
+                    </button>
+                </div>
+
+                <!-- Tab 3: Team -->
+                <div id="tab-team" class="space-y-3 hidden animate-fade-in">
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal border border-cream">
+                        <div class="flex items-center gap-3">
+                            <img src="https://placehold.co/40x40/7E9B89/FFFFFF?text=A" alt="安安" class="w-9 h-9 rounded-full object-cover">
+                            <div>
+                                <div class="text-xs font-bold text-warmdark">安安 (專案顧問)</div>
+                                <div class="text-[10px] text-sage-600">「剛完成客戶諮詢，今天氛圍很棒！」</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-sage-500"></span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 rounded-xl bg-oatmeal border border-cream">
+                        <div class="flex items-center gap-3">
+                            <img src="https://placehold.co/40x40/D48C73/FFFFFF?text=K" alt="凱文" class="w-9 h-9 rounded-full object-cover">
+                            <div>
+                                <div class="text-xs font-bold text-warmdark">凱文 (視覺設計)</div>
+                                <div class="text-[10px] text-gray-400">休假中 ☕ (明天歸隊)</div>
+                            </div>
+                        </div>
+                        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-cream/60 rounded-3xl p-4 border border-cream flex items-center gap-3">
+                <div class="text-2xl">☕</div>
+                <div>
+                    <h4 class="text-xs font-bold text-warmdark mb-0.5">管家貼心提醒</h4>
+                    <p class="text-[11px] text-gray-600 leading-normal">
+                        適度休息也是高效工作的一部分。下午記得起身走走，補充一杯溫開水喔！
+                    </p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Bottom Navigation Bar -->
+        <nav class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-cream px-6 py-3 flex justify-between items-center z-20">
+            <button onclick="switchNav(0)" id="nav-btn-0" class="flex flex-col items-center gap-1 text-sage-700 transition">
+                <span class="text-lg">🏡</span>
+                <span class="text-[10px] font-bold">首頁</span>
+            </button>
+            <button onclick="switchNav(1)" id="nav-btn-1" class="flex flex-col items-center gap-1 text-gray-400 hover:text-sage-600 transition">
+                <span class="text-lg">📊</span>
+                <span class="text-[10px] font-medium">數據</span>
+            </button>
+            <button onclick="switchNav(2)" id="nav-btn-2" class="flex flex-col items-center gap-1 text-gray-400 hover:text-sage-600 transition">
+                <span class="text-lg">💬</span>
+                <span class="text-[10px] font-medium">諮詢</span>
+            </button>
+            <button onclick="switchNav(3)" id="nav-btn-3" class="flex flex-col items-center gap-1 text-gray-400 hover:text-sage-600 transition">
+                <span class="text-lg">⚙️</span>
+                <span class="text-[10px] font-medium">設定</span>
+            </button>
+        </nav>
+
+        <!-- Custom Toast Notification Box (Replaces alert) -->
+        <div id="toast" class="absolute bottom-20 left-1/2 transform -translate-x-1/2 bg-warmdark text-white px-4 py-2.5 rounded-2xl text-xs font-medium shadow-lg opacity-0 pointer-events-none transition-all duration-300 z-30 flex items-center gap-2">
+            <span id="toast-msg">通知訊息</span>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.getElementById('tab-tasks').classList.add('hidden');
+            document.getElementById('tab-finances').classList.add('hidden');
+            document.getElementById('tab-team').classList.add('hidden');
+
+            // Reset tab button styles
+            document.getElementById('tab-btn-tasks').className = "flex-1 py-2 text-xs font-bold rounded-xl transition text-gray-500 hover:text-warmdark bg-transparent shadow-none";
+            document.getElementById('tab-btn-finances').className = "flex-1 py-2 text-xs font-bold rounded-xl transition text-gray-500 hover:text-warmdark bg-transparent shadow-none";
+            document.getElementById('tab-btn-team').className = "flex-1 py-2 text-xs font-bold rounded-xl transition text-gray-500 hover:text-warmdark bg-transparent shadow-none";
+
+            // Show selected tab and highlight button
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tabName).className = "flex-1 py-2 text-xs font-bold rounded-xl transition bg-white text-sage-700 shadow-sm";
+        }
+
+        function switchNav(index) {
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById('nav-btn-' + i);
+                if (i === index) {
+                    btn.className = "flex flex-col items-center gap-1 text-sage-700 transition font-bold";
+                } else {
+                    btn.className = "flex flex-col items-center gap-1 text-gray-400 hover:text-sage-600 transition font-medium";
+                }
+            }
+            const navNames = ['首頁儀表板', '深度商業數據分析', '專屬管家線上諮詢', '系統偏好與設定'];
+            showToast('已切換至：' + navNames[index] + ' ✨');
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const msgSpan = document.getElementById('toast-msg');
+            msgSpan.innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            toast.classList.add('opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>
