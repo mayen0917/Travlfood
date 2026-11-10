@@ -1,109 +1,947 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>學習歷程首頁</title>
+
+    <title>我的學習手札｜My Learning Journal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- 自訂 CSS -->
     <link rel="stylesheet" href="css/myall0924.css">
+    <link rel="stylesheet" href="css/bootstrap.bundle.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
     <style>
-        /* 匯入日系手寫感字型 */
-        @import url('https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&display=swap');
-        /* 清新簡約風格設定 */
+        /* =========================================
+   01. 全站色彩與基本設定
+========================================= */
+
         :root {
-            --bg-color: #b3f5f0;
-            --card-bg: #ffffff;
-            --primary-color: #4a7c59;
-            --hover-color: #689f78;
-            --text-color: #333333;
-            --text-muted: #777777;
-            --border-radius: 12px;
-            --shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+            /* 主題色彩 */
+            --color-bg: #F6F1E8;
+            --color-primary: #899B83;
+            --color-primary-dark: #71846B;
+            --color-accent: #B58C6B;
+            --color-card: #E8DED0;
+            --color-text: #62594E;
+            --color-decoration: #D6BFA7;
+
+            /* 邊框 */
+            --color-border: #D6BFA7;
+
+            /* 文字 */
+            --font-main: "Noto Sans TC", sans-serif;
+
+            /* 圓角 */
+            --radius-card: 16px;
+            --radius-image: 12px;
+
+            /* 陰影 */
+            --shadow-card: 0 5px 18px rgba(98, 89, 78, 0.08);
+            --shadow-card-hover: 0 12px 28px rgba(98, 89, 78, 0.16);
+
+            /* 動畫 */
+            --transition: all 0.3s ease;
+        }
+
+
+        /* =========================================
+   02. 全站基本樣式
+========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
             margin: 0;
-            padding: 40px 20px;
-            font-family: "Klee One", cursive;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+
+        /* =========================================
+   03. Navbar 導覽列
+========================================= */
+
+        .custom-navbar {
+            min-height: 64px;
+            background: rgba(246, 241, 232, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid rgba(214, 191, 167, 0.65);
+
+            padding: 8px 0;
+            z-index: 1000;
+        }
+
+        /* Logo */
+        .journal-logo {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            box-sizing: border-box;
-        }
+            gap: 9px;
 
-        .mytitle-04 {
-            font-size: 1.8rem;
+            font-size: 18px;
             font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-            position: relative;
-            padding-bottom: 10px;
+            color: var(--color-text);
+
+            transition: var(--transition);
         }
 
-        .mytitle-04::after {
-            content: '';
+        .journal-logo i {
+            color: var(--color-primary);
+            font-size: 20px;
+        }
+
+        .journal-logo:hover {
+            color: var(--color-primary-dark);
+        }
+
+        /* 導覽選單 */
+        .custom-navbar .navbar-nav {
+            flex-direction: row;
+            gap: 28px;
+        }
+
+        .custom-navbar .nav-link {
+            color: var(--color-text);
+            font-size: 15px;
+            font-weight: 500;
+
+            padding: 8px 0;
+            position: relative;
+
+            transition: var(--transition);
+        }
+
+        .custom-navbar .nav-link:hover,
+        .custom-navbar .nav-link.active {
+            color: var(--color-primary-dark);
+        }
+
+
+        /* =========================================
+   04. Banner 主視覺
+========================================= */
+
+        .hero-section {
+            min-height: 350px;
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 60px 20px 75px;
+            overflow: hidden;
+
+            background-color: var(--color-bg);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 主標題 */
+        .hero-title {
+            font-size: 44px;
+            font-weight: 700;
+            letter-spacing: 3px;
+
+            color: var(--color-text);
+            margin-bottom: 20px;
+        }
+
+        /* 英文副標題 */
+        .hero-subtitle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle span {
+            width: 55px;
+            height: 1px;
+            background-color: var(--color-accent);
+        }
+
+        .hero-subtitle p {
+            margin: 0;
+
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--color-accent);
+            font-weight: 500;
+        }
+
+        /* 簡介 */
+        .hero-description {
+            font-size: 16px;
+            color: var(--color-text);
+            letter-spacing: 1px;
+
+            margin-bottom: 28px;
+        }
+
+        /* Banner 連結 */
+        .hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            color: var(--color-primary-dark);
+            font-size: 14px;
+            font-weight: 500;
+
+            transition: var(--transition);
+        }
+
+        .hero-link:hover {
+            color: var(--color-accent);
+            transform: translateY(3px);
+        }
+
+        /* Banner 植物裝飾 */
+        .hero-decoration {
             position: absolute;
-            bottom: 0;
+            color: var(--color-decoration);
+            opacity: 0.55;
+            font-size: 90px;
+        }
+
+        .hero-decoration-left {
+            left: 12%;
+            top: 25%;
+            transform: rotate(-20deg);
+        }
+
+        .hero-decoration-right {
+            right: 12%;
+            bottom: 20%;
+            transform: rotate(20deg);
+        }
+
+        /* Banner 底部植物分隔 */
+        .hero-bottom-decoration {
+            position: absolute;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 3px;
-            background-color: var(--primary-color);
-            border-radius: 2px;
-        }
 
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            max-width: 500px;
             display: flex;
-            flex-direction: column;
-            gap: 16px;
+            align-items: center;
+            gap: 12px;
+
+            color: var(--color-primary);
         }
 
-        ul li {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            overflow: hidden;
-            border: 1px solid rgba(0, 0, 0, 0.03);
-        }
-
-        ul li:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-        }
-
-        ul li a {
+        .hero-bottom-decoration span {
             display: block;
-            padding: 18px 24px;
-            text-decoration: none;
-            color: var(--text-color);
-            font-size: 1rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
+            width: 65px;
+            height: 1px;
+            background-color: var(--color-decoration);
         }
 
-        ul li a:hover {
-            color: var(--primary-color);
+        .hero-bottom-decoration i {
+            font-size: 18px;
+        }
+
+
+        /* =========================================
+   05. 作品展示區
+========================================= */
+
+        .works-section {
+            padding: 75px 0 90px;
+            background-color: var(--color-bg);
+        }
+
+        /* 區塊標題 */
+        .section-heading {
+            margin-bottom: 45px;
+        }
+
+        .section-heading h2 {
+            color: var(--color-text);
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: 2px;
+
+            margin-bottom: 6px;
+        }
+
+        .section-en-title {
+            color: var(--color-accent);
+            font-size: 13px;
+            letter-spacing: 4px;
+
+            margin-bottom: 12px;
+        }
+
+        .section-description {
+            color: var(--color-text);
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+
+        .heading-decoration {
+            color: var(--color-primary);
+            font-size: 20px;
+        }
+
+
+        /* =========================================
+   06. 作品卡片
+========================================= */
+
+        .works-grid {
+            row-gap: 28px !important;
+        }
+
+        /* 卡片錯落排列 */
+        .work-item:nth-child(even) {
+            transform: translateY(18px);
+        }
+
+        /* 卡片本體 */
+        .work-card {
+            position: relative;
+            height: 100%;
+
+            padding: 24px;
+
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-card);
+
+            box-shadow: var(--shadow-card);
+
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        /* Hover 效果 */
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-card-hover);
+        }
+
+        /* 圖片容器 */
+        .work-image {
+            width: 100%;
+            height: 220px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: var(--color-card);
+
+            border-radius: var(--radius-image);
+            overflow: hidden;
+
+            margin-bottom: 22px;
+        }
+
+        /* 圖片完整顯示 */
+        .work-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+            object-position: center;
+
+            transition: var(--transition);
+        }
+
+        /* 圖片 Hover */
+        .work-card:hover .work-image img {
+            transform: scale(1.03);
+        }
+
+        /* 分類標籤 */
+        .work-category {
+            display: inline-block;
+
+            padding: 4px 12px;
+            margin-bottom: 10px;
+
+            background-color: rgba(137, 155, 131, 0.18);
+            color: var(--color-primary-dark);
+
+            border-radius: 20px;
+
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* 作品名稱 */
+        .work-title {
+            color: var(--color-text);
+
+            font-size: 22px;
+            font-weight: 600;
+
+            margin-bottom: 8px;
+        }
+
+        /* 作品簡介 */
+        .work-description {
+            color: var(--color-text);
+
+            font-size: 15px;
+            line-height: 1.8;
+
+            margin-bottom: 18px;
+        }
+
+        /* 查看作品按鈕 */
+        .work-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 20px;
+
+            background-color: var(--color-primary);
+            color: #ffffff;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+            font-weight: 500;
+
+            transition: var(--transition);
+        }
+
+        .work-button:hover {
+            background-color: var(--color-primary-dark);
+            color: #ffffff;
+        }
+
+        .work-button i {
+            transition: var(--transition);
+        }
+
+        .work-button:hover i {
+            transform: translate(3px, -3px);
+        }
+
+        /* 卡片植物裝飾 */
+        .work-decoration {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+
+            color: var(--color-decoration);
+            opacity: 0.75;
+
+            font-size: 23px;
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+   07. Footer 頁尾
+========================================= */
+
+        .journal-footer {
+            padding: 40px 0 25px;
+            text-align: center;
+
+            background-color: var(--color-card);
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Footer 植物裝飾 */
+        .footer-decoration {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .footer-decoration i {
+            font-size: 18px;
+        }
+
+        .footer-decoration span {
+            width: 35px;
+            height: 1px;
+            background-color: var(--color-decoration);
+        }
+
+        /* Footer 標題 */
+        .footer-title {
+            color: var(--color-text);
+            font-size: 20px;
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+        /* Footer 英文 */
+        .footer-quote {
+            color: var(--color-accent);
+            font-size: 13px;
+            letter-spacing: 1px;
+
+            margin-bottom: 20px;
+        }
+
+        /* 分隔線 */
+        .footer-divider {
+            width: 60px;
+            height: 1px;
+
+            background-color: var(--color-border);
+            margin: 0 auto 18px;
+        }
+
+        /* Copyright */
+        .footer-copyright {
+            color: var(--color-text);
+            opacity: 0.7;
+
+            font-size: 12px;
+            margin-bottom: 0;
+        }
+
+
+        /* =========================================
+   08. RWD 響應式設定
+   統一放在 CSS 最下方
+========================================= */
+
+        /* 平板裝置 */
+        @media (max-width: 991.98px) {
+
+            .hero-decoration {
+                font-size: 70px;
+            }
+
+            .hero-decoration-left {
+                left: 5%;
+            }
+
+            .hero-decoration-right {
+                right: 5%;
+            }
+
+            .works-section {
+                padding: 65px 0 75px;
+            }
+
+        }
+
+        /* 手機裝置 */
+        @media (max-width: 767.98px) {
+
+            /* Navbar */
+            .custom-navbar {
+                min-height: 60px;
+                padding: 7px 0;
+            }
+
+            .journal-logo {
+                font-size: 15px;
+                gap: 6px;
+            }
+
+            .journal-logo i {
+                font-size: 17px;
+            }
+
+            .custom-navbar .navbar-nav {
+                gap: 15px;
+            }
+
+            .custom-navbar .nav-link {
+                font-size: 13px;
+            }
+
+            /* Banner */
+            .hero-section {
+                min-height: 320px;
+                padding: 55px 15px 65px;
+            }
+
+            .hero-title {
+                font-size: 30px;
+                letter-spacing: 1px;
+            }
+
+            .hero-subtitle {
+                gap: 10px;
+            }
+
+            .hero-subtitle span {
+                width: 30px;
+            }
+
+            .hero-subtitle p {
+                font-size: 11px;
+                letter-spacing: 2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-decoration {
+                font-size: 42px;
+                opacity: 0.4;
+            }
+
+            .hero-decoration-left {
+                left: 2%;
+                top: 12%;
+            }
+
+            .hero-decoration-right {
+                right: 2%;
+                bottom: 12%;
+            }
+
+            /* 作品展示 */
+            .works-section {
+                padding: 55px 0 65px;
+            }
+
+            .section-heading {
+                margin-bottom: 30px;
+            }
+
+            .section-heading h2 {
+                font-size: 25px;
+            }
+
+            .section-description {
+                font-size: 13px;
+            }
+
+            /* 卡片 */
+            .work-item:nth-child(even) {
+                transform: none;
+            }
+
+            .work-card {
+                padding: 18px;
+            }
+
+            .work-image {
+                height: 220px;
+                margin-bottom: 18px;
+            }
+
+            .work-title {
+                font-size: 20px;
+            }
+
+            .work-description {
+                font-size: 14px;
+            }
+
+            /* Footer */
+            .journal-footer {
+                padding: 35px 0 22px;
+            }
+
+        }
+
+        /* 小型手機 */
+        @media (max-width: 375px) {
+
+            .journal-logo {
+                font-size: 13px;
+            }
+
+            .custom-navbar .navbar-nav {
+                gap: 10px;
+            }
+
+            .custom-navbar .nav-link {
+                font-size: 12px;
+            }
+
+            .hero-title {
+                font-size: 26px;
+            }
+
+            .hero-description {
+                font-size: 13px;
+            }
+
         }
     </style>
+
 </head>
+
 <body>
-    <div class="mytitle-04">學習歷程筆記展示</div>
-    <ul>
-        <li><a href="練習作業0923-1.html" target="_blank">HTML and CSS排版練習(20260923) </a></li>
-        <li><a href="20260929-jstravelfood.html" target="_blank">JS練習(20260929)</a></li>
-        <li><a href="20261027ai美化.html" target="_blank" >表單Ai美化版(20261027)</a></li>
-    </ul>
-    <script></script> 
-    <script src="js/jquery-4.0.0.js"></script>
-    
+
+    <!-- ==================== Navbar ==================== -->
+    <nav class="navbar navbar-expand custom-navbar sticky-top">
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand journal-logo" href="#home">
+                <i class="bi bi-leaf-fill"></i>
+                <span>我的學習手札</span>
+            </a>
+
+            <!-- 導覽選單 -->
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link active" href="#home">首頁</a>
+                <a class="nav-link" href="#works">作品展示</a>
+            </div>
+
+        </div>
+    </nav>
+
+
+    <!-- ==================== Banner ==================== -->
+    <header id="home" class="hero-section">
+
+        <!-- 左側植物裝飾 -->
+        <div class="hero-decoration hero-decoration-left">
+            <i class="bi bi-flower1"></i>
+        </div>
+
+        <!-- 右側植物裝飾 -->
+        <div class="hero-decoration hero-decoration-right">
+            <i class="bi bi-flower2"></i>
+        </div>
+
+        <div class="container">
+            <div class="hero-content text-center">
+
+                <h1 class="hero-title">
+                    我的學習歷程筆記
+                </h1>
+
+                <div class="hero-subtitle">
+                    <span></span>
+                    <p>MY LEARNING JOURNAL</p>
+                    <span></span>
+                </div>
+
+                <p class="hero-description">
+                    記錄每一次學習，收藏每一份成長。
+                </p>
+
+                <a href="#works" class="hero-link">
+                    探索我的作品
+                    <i class="bi bi-arrow-down"></i>
+                </a>
+
+            </div>
+        </div>
+
+        <!-- Banner 底部植物分隔 -->
+        <div class="hero-bottom-decoration">
+            <span></span>
+            <i class="bi bi-leaf"></i>
+            <span></span>
+        </div>
+
+    </header>
+
+
+    <!-- ==================== 作品展示區 ==================== -->
+    <main>
+        <section id="works" class="works-section">
+            <div class="container">
+                <!-- 區塊標題 -->
+                <div class="section-heading text-center">
+                    <h2>我的學習作品</h2>
+                    <p class="section-en-title">My Works</p>
+                    <p class="section-description">每一份作品，都是學習路上的小小紀錄。</p>
+                    <div class="heading-decoration">
+                        <i class="bi bi-leaf"></i>
+                    </div>
+                </div>
+
+
+                <!-- 作品卡片 -->
+                <div class="row g-4 works-grid">
+                    <!-- 作品 01 -->
+                    <div class="col-md-6 work-item">
+                        <article class="work-card">
+                            <div class="work-image">
+                                <img src="images/future03.avif" alt="作品一展示圖片">
+                            </div>
+                            <div class="work-content">
+                                <span class="work-category">網頁設計</span>
+                                <h3 class="work-title">個人履歷網站</h3>
+                                <p class="work-description">運用 HTML 與 CSS 製作個人化的網頁作品。</p>
+                                <a href="20261105-SPA一頁式網站.html" class="work-button" target="_blank" rel="noopener noreferrer">
+                                    查看作品
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <i class="bi bi-flower1 work-decoration"></i>
+                        </article>
+                    </div>
+
+
+                    <!-- 作品 02 -->
+                    <div class="col-md-6 work-item">
+                        <article class="work-card">
+                            <div class="work-image">
+                                <img src="images/about me.avif" alt="作品二展示圖片">
+                            </div>
+                            <div class="work-content">
+                                <span class="work-category">程式練習</span>
+                                <h3 class="work-title">JavaScript 互動練習</h3>
+                                <p class="work-description">透過 JavaScript 練習網頁互動與功能設計。</p>
+                                <a href="20260929-jstravelfood.html" class="work-button" target="_blank" rel="noopener noreferrer">
+                                    查看作品
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <i class="bi bi-flower2 work-decoration"></i>
+                        </article>
+                    </div>
+
+
+                    <!-- 作品 03 -->
+                    <div class="col-md-6 work-item">
+                        <article class="work-card">
+                            <div class="work-image">
+                                <img src="images/work04.avif" alt="作品三展示圖片">
+                            </div>
+                            <div class="work-content">
+                                <span class="work-category">網頁應用</span>
+                                <h3 class="work-title"></h3>線上報名系統</h3>
+                                <p class="work-description">結合表單設計與資料驗證，完成互動報名頁面。</p>
+                                <a href="20261027ai美化.html" class="work-button" target="_blank" rel="noopener noreferrer">
+                                    查看作品
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <i class="bi bi-flower1 work-decoration"></i>
+                        </article>
+                    </div>
+
+                    <!-- 作品 04 -->
+                    <div class="col-md-6 work-item">
+                        <article class="work-card">
+                            <div class="work-image">
+                                <img src="images/work04.jpg" alt="作品四展示圖片">
+                            </div>
+                            <div class="work-content">
+                                <span class="work-category">視覺設計</span>
+                                <h3 class="work-title">網頁介面設計</h3>
+                                <p class="work-description">練習色彩搭配、排版配置與整體視覺呈現。</p>
+                                <a href="#" class="work-button" target="_blank" rel="noopener noreferrer">
+                                    查看作品
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <i class="bi bi-flower2 work-decoration"></i>
+                        </article>
+                    </div>
+
+
+                    <!-- 作品 05 -->
+                    <div class="col-md-6 work-item">
+                        <article class="work-card">
+                            <div class="work-image">
+                                <img src="images/work05.jpg" alt="作品五展示圖片">
+                            </div>
+                            <div class="work-content">
+                                <span class="work-category">專題製作</span>
+                                <h3 class="work-title">綜合學習專題</h3>
+                                <p class="work-description">整合所學技術，完成階段性的學習成果。</p>
+                                <a href="#" class="work-button" target="_blank" rel="noopener noreferrer">
+                                    查看作品
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <i class="bi bi-flower1 work-decoration"></i>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== Footer ==================== -->
+    <footer class="journal-footer">
+
+        <div class="container">
+
+            <div class="footer-decoration">
+                <i class="bi bi-flower1"></i>
+                <span></span>
+                <i class="bi bi-leaf"></i>
+                <span></span>
+                <i class="bi bi-flower2"></i>
+            </div>
+
+            <h3 class="footer-title">我的學習手札</h3>
+            <p class="footer-quote">
+                Every little step makes a difference.
+            </p>
+            <div class="footer-divider"></div>
+            <p class="footer-copyright">
+                © 2026 My Learning Journal. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 自訂 JavaScript -->
+    <script src="js/script.js"></script>
+
 </body>
+
+</html>
+
+
+</body>
+
 </html>
